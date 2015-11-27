@@ -6,6 +6,8 @@ Simple program which accepts HTTP requests and relays their bodies as
 
 ## Installation
 
+Install via `go get` or head over to [Releases](https://github.com/tj/http_to_firehose/releases) for binaries.
+
 ```
 $ go get github.com/tj/http_to_firehose/cmd/http_to_firehose
 ```
