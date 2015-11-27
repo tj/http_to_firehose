@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -20,7 +21,10 @@ type Options struct {
 	Backlog    int    `help:"Firehose record backlog size"`
 	Username   string `help:"Basic auth username"`
 	Password   string `help:"Basic auth password"`
+	Version    bool   `help:"Output version"`
 }
+
+var version = "0.0.1"
 
 func main() {
 	var options = Options{
@@ -29,6 +33,11 @@ func main() {
 	}
 
 	config.MustResolve(&options)
+
+	if options.Version {
+		fmt.Printf("%s\n", version)
+		os.Exit(0)
+	}
 
 	c := &client.Client{
 		Firehose:   firehose.New(session.New()),
