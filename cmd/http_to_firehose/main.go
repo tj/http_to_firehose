@@ -25,6 +25,7 @@ type Options struct {
 func main() {
 	var options = Options{
 		Address: ":3000",
+		Backlog: 100,
 	}
 
 	config.MustResolve(&options)
