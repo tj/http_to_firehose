@@ -17,7 +17,7 @@ import (
 
 type Options struct {
 	Address    string `help:"Bind address"`
-	StreamName string `help:"Firehose stream name"`
+	StreamName string `help:"Firehose stream name" validate:"nonzero"`
 	Backlog    int    `help:"Firehose record backlog size"`
 	Username   string `help:"Basic auth username"`
 	Password   string `help:"Basic auth password"`
