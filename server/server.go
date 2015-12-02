@@ -28,7 +28,7 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if err := s.Client.Put(b); err != nil {
-		log.Printf("error sending record:", err)
+		log.Printf("error sending record: %s", err)
 	}
 
 	w.WriteHeader(202)
