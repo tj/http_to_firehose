@@ -24,13 +24,16 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	b, err := ioutil.ReadAll(r.Body)
 	if err != nil {
 		log.Printf("error reading body: %s", err)
+		http.Error(w, http.StatusText(http.StatusBadRequest), http.StatusBadRequest)
 		return
 	}
 
 	if err := s.Client.Put(b); err != nil {
 		log.Printf("error sending record: %s", err)
+		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+		return
 	}
 
-	w.WriteHeader(202)
-	fmt.Fprintln(w, http.StatusText(202))
+	w.WriteHeader(http.StatusAccepted)
+	fmt.Fprintln(w, http.StatusText(http.StatusAccepted))
 }
